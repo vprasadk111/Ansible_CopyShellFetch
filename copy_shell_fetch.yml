@@ -1,0 +1,18 @@
+- name: shell script execution to gatherfacts
+  hosts: servergroup
+  become: 'yes'
+  become_user: root
+  tasks:
+    - name: copy script to target
+      copy: >-
+        src=/home/ec2-user/ansiblepractise/gatherfacts.sh
+        dest=/home/ec2-user/Ansible/ mode=0777
+    - name: Change the working directory to somedir/ before executing the command.
+      shell: >-
+        sh /home/ec2-user/Ansible/gatherfacts.sh >
+        /home/ec2-user/Ansible/gatherfacts.txt
+    - name: fetch file to local
+      fetch:
+        src: /home/ec2-user/Ansible/gatherfacts.txt
+        dest: 'fetched/{{ inventory_hostname }}/'
+        flat: true
