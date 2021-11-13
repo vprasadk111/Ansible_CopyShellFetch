@@ -5,7 +5,7 @@
   tasks:
     - name: copy script to target
       copy: >-
-        src=/home/ec2-user/ansiblepractise/gatherfacts.sh
+        remote_src=/home/ec2-user/ansiblepractise/gatherfacts.sh
         dest=/home/ec2-user/Ansible/ mode=0777
     - name: Change the working directory to somedir/ before executing the command.
       shell: >-
