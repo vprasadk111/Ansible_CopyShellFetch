@@ -5,12 +5,15 @@
   tasks:
     - name: copy script to target
       copy: >-
-        remote_src=/tmp/gatherfacts.sh
+        src=/tmp/gatherfacts.sh
         dest=/tmp/ mode=0777
     - name: Change the working directory to somedir/ before executing the command.
       shell: >-
         sh /tmp/gatherfacts.sh >
         /tmp/gatherfacts.txt
+    - name : give permission
+      command: >-
+        chmod 777 gatherfacts.txt
     - name: fetch file to local
       fetch:
         src: /tmp/gatherfacts.txt
