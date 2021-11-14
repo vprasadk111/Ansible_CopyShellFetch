@@ -5,14 +5,17 @@
   tasks:
     - name: copy script to target
       copy: >-
-        src=/tmp/gatherfacts.sh
+        remote_src=/tmp/gatherfacts.sh
         dest=/tmp/ mode=0777
     - name: Change the working directory to somedir/ before executing the command.
       shell: >-
         sh /tmp/gatherfacts.sh >
         /tmp/gatherfacts.txt
+    - name : give permission
+      command: >-
+        chmod 777 gatherfacts.txt
     - name: fetch file to local
       fetch:
-        src: /tmp/gatherfacts.txt mode=0777
+        src: /tmp/gatherfacts.txt
         dest: 'fetched/{{ inventory_hostname }}/'
         flat: true
