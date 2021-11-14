@@ -5,7 +5,7 @@
   tasks:
     - name: copy script to target
       copy: >-
-        remote_src=/tmp/gatherfacts.sh
+        src=/tmp/gatherfacts.sh
         dest=/tmp/ mode=0777
     - name: Change the working directory to somedir/ before executing the command.
       shell: >-
