@@ -1,0 +1,18 @@
+- name: shell script execution to gatherfacts
+  hosts: servergroup
+  become: 'yes'
+  become_user: root
+  tasks:
+    - name: copy script to target
+      copy: >-
+        remote_src=/tmp/gatherfacts.sh
+        dest=/tmp/ mode=0777
+    - name: Change the working directory to somedir/ before executing the command.
+      shell: >-
+        sh /tmp/gatherfacts.sh >
+        /tmp/gatherfacts.txt
+    - name: fetch file to local
+      fetch:
+        src: /tmp/gatherfacts.txt
+        dest: 'fetched/{{ inventory_hostname }}/'
+        flat: true
