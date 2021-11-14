@@ -11,9 +11,6 @@
       shell: >-
         sh /tmp/gatherfacts.sh >
         /tmp/gatherfacts.txt
-    - name : give permission
-      command: >-
-        chmod 777 gatherfacts.txt
     - name: fetch file to local
       fetch:
         src: /tmp/gatherfacts.txt
