@@ -13,7 +13,7 @@
         /tmp/gatherfacts.txt
     - name : give permission
       command: >-
-        chmod 777 gatherfacts.txt
+        chmod 777 /tmp/gatherfacts.txt
     - name: fetch file to local
       fetch:
         src: /tmp/gatherfacts.txt
