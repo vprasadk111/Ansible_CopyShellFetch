@@ -13,6 +13,6 @@
         /tmp/gatherfacts.txt
     - name: fetch file to local
       fetch:
-        src: /tmp/gatherfacts.txt
+        src: /tmp/gatherfacts.txt mode=0777
         dest: 'fetched/{{ inventory_hostname }}/'
         flat: true
