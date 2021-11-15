@@ -15,7 +15,10 @@ pipeline{
     post {
         always {
 	     
-	     emailext attachLog: true, body: '<b>Build URL :</b> ${env.BUILD_URL} <br><b>Build Workspace :</b> ${env.WORKSPACE} <br> <b>Build Result :</b> ${currentBuild.result}', recipientProviders: [buildUser(), developers()], subject: 'Status of pipeline: ${currentBuild.fullDisplayName}', to: 'vishnumanohar.111@gmail.com'
+	     mail to: 'vishnumanohar.111@gmail.com',
+             mimeType: 'text/html',
+             subject: "Status of pipeline: ${currentBuild.fullDisplayName}",
+             body: "<b>Build URL :</b> ${env.BUILD_URL} <br><b>Build Workspace :</b> ${env.WORKSPACE} <br> <b>Build Result :</b> ${currentBuild.result} emailext attachLog: true"
         }
     }
 }
