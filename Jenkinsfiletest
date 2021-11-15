@@ -15,7 +15,7 @@ pipeline{
 post {
         always {
            //emailext attachmentsPattern: 'gatherfacts.txt.txt', body: '', subject: '', to: 'vishnumanohar.111@gmail.com'
-           emailext (attachLog: true, attachmentsPattern: 'gatherfacts.txt.txt', body: '', subject: '', to: 'vishnumanohar.111@gmail.com')
+           emailext (attachLog: true, attachmentsPattern: 'fetched/*.txt', body: '', subject: '', to: 'vishnumanohar.111@gmail.com')
         }
 }
 }
