@@ -14,8 +14,7 @@ pipeline{
     }
 post {
         always {
-           emailext (attachLog: true, body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}", subject: 'Test', to: 'vishnumanohar.111@gmail.com')
-
+           emailext (attachLog: true, body: "<b>Build URL :</b> ${env.BUILD_URL} <br><b>Build Workspace :</b> ${env.WORKSPACE} <br> <b>Build Result :</b> ${currentBuild.result}", subject: "Status of pipeline: ${currentBuild.fullDisplayName}", to: 'vishnumanohar.111@gmail.com')
         }
 }
 }
