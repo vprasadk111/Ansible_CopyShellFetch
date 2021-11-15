@@ -17,11 +17,10 @@ post {
             archiveArtifacts artifacts: '*.txt', onlyIfSuccessful: true
             
             echo 'I will always say Hello again!'
-            mail to: 'vishnumanohar.111@gmail.com',
-            mimeType: 'text/html',
+                
             emailext attachLog: true, attachmentsPattern: '*.txt',
                 body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
-                //recipientProviders: [developers(), requestor()],
+                recipientProviders: [developers(), requestor()],
                 subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
             
         }
