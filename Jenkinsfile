@@ -12,12 +12,17 @@ pipeline{
             }
         }
     }
-    post {
+post {
         always {
-	     
-	     emailext attachmentsPattern: '**/fetched/*.txt', body: '<b>Build URL :</b> ${env.BUILD_URL} <br><b>Build Workspace :</b> ${env.WORKSPACE} <br> <b>Build Result :</b> ${currentBuild.result} emailext attachLog: true', to: 'vishnumanohar.111@gmail.com'
-			 
-			 
+            archiveArtifacts artifacts: '*.txt', onlyIfSuccessful: true
+            
+            echo 'I will always say Hello again!'
+                
+            emailext attachLog: true, attachmentsPattern: '*.txt',
+                body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
+                recipientProviders: 'vishnumanohar.111@gmail.com',
+                subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
+            
         }
     }
 }
