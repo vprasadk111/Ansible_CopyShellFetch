@@ -15,11 +15,7 @@ pipeline{
     post {
         always {
 	     
-	     mail to: 'vishnumanohar.111@gmail.com',
-             mimeType: 'text/html',
-             subject: "Status of pipeline: ${currentBuild.fullDisplayName}",
-			 emailext attachmentsPattern: '**/fetched/*.txt',
-             body: "<b>Build URL :</b> ${env.BUILD_URL} <br><b>Build Workspace :</b> ${env.WORKSPACE} <br> <b>Build Result :</b> ${currentBuild.result} emailext attachLog: true"
+	     emailext attachmentsPattern: '**/fetched/*.txt', body: 'Find attachments', subject: 'test', to: 'vishnumanohar.111@gmail.com'
 			 
 			 
         }
