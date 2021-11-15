@@ -19,7 +19,7 @@ pipeline{
              mimeType: 'text/html',
              subject: "Status of pipeline: ${currentBuild.fullDisplayName}",
              body: "<b>Build URL :</b> ${env.BUILD_URL} <br><b>Build Workspace :</b> ${env.WORKSPACE} <br> <b>Build Result :</b> ${currentBuild.result}"
-	     emailext attachmentsPattern: '**/fetched/*',
+	     emailext attachmentsPattern: '**/fetched/*'
         }
     }
 }
