@@ -20,7 +20,7 @@ post {
                 
             emailext attachLog: true, attachmentsPattern: '*.txt',
                 body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
-                recipientProviders: vishnumanohar.111@gmail.com,
+                recipientProviders: 'vishnumanohar.111@gmail.com',
                 subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
             
         }
