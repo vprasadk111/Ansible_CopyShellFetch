@@ -12,15 +12,17 @@ pipeline{
             }
         }
     }
-    post {
+post {
         always {
-	     
-	     mail to: 'vishnumanohar.111@gmail.com',
-             mimeType: 'text/html',
-	     attachmentsPattern: '*.txt',
-             subject: "Status of pipeline: ${currentBuild.fullDisplayName}",
-             body: "<b>Build URL :</b> ${env.BUILD_URL} <br><b>Build Workspace :</b> ${env.WORKSPACE} <br> <b>Build Result :</b> ${currentBuild.result} emailext attachLog: true"	 
-			 
+            archiveArtifacts artifacts: 'generatedFile.txt', onlyIfSuccessful: true
+            
+            echo 'I will always say Hello again!'
+                
+            emailext attachLog: true, attachmentsPattern: 'generatedFile.txt',
+                body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
+                recipientProviders: [developers(), requestor()],
+                subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
+            
         }
     }
 }
