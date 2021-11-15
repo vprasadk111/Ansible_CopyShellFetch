@@ -15,8 +15,7 @@ pipeline{
     post {
         always {
 	     
-	     emailext body: '<b>Build URL :</b> ${env.BUILD_URL} <br><b>Build Workspace :</b> ${env.WORKSPACE} <br> <b>Build Result :</b> ${currentBuild.result}', compressLog: true, mimeType: 'text/html', replyTo: 'vishnumanohar.111@gmail.com', subject: 'Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}', to: 'vishnumanohar.111@gmail.com'	 
-			 
+	    emailext body: '<b>Build URL :</b> ${env.BUILD_URL} <br><b>Build Workspace :</b> ${env.WORKSPACE} <br> <b>Build Result :</b> ${currentBuild.result}', compressLog: true, mimeType: 'text/html', recipientProviders: [buildUser(), developers()], replyTo: 'vishnumanohar.111@gmail.com', subject: 'Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}', to: 'vishnumanohar.111@gmail.com'	 
         }
     }
 }
